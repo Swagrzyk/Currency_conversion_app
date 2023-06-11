@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Walutowy</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+
+</head>
+<body>
+<h1>Kalkulator Walutowy</h1>
+
+<div>
+    <label>Kwota:</label>
+    <input type="number" id="amountInput" />
+</div>
+<div>
+    <label>Z:</label>
+    <select id="toCurrencySelect">
+        <option value="GBP">GBP</option>
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="CHF">CHF</option>
+
+    </select>
+</div>
+<div>
+    <label>Na:</label>
+    <select id="fromCurrencySelect">
+        <option value="GBP">GBP</option>
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="CHF">CHF</option>
+
+    </select>
+</div>
+<div>
+
+    <button class="glow-on-hover" type="button" onclick="convertCurrency()">OBLICZ</button>
+</div>
+
+<div id="resultContainer"></div>
+
+<script>
+    function convertCurrency() {
+        var amount = document.getElementById("amountInput").value;
+        var fromCurrency = document.getElementById("fromCurrencySelect").value;
+        var toCurrency = document.getElementById("toCurrencySelect").value;
+
+        var url = "/convert?amount=" + amount + "&from=" + fromCurrency + "&to=" + toCurrency;
+
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultContainer").innerHTML = "Wynik: " + data;
+            })
+            .catch(error => {
+                console.log("Wystąpił błąd: " + error);
+            });
+    }
+</script>
+</body>
+</html>

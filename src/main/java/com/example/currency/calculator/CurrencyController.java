@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class CurrencyController {
-    private static final String NBP_API_URL = "http://api.nbp.pl/api/exchangerates/tables/a/";
+    private static final String NBP_API_URL = "http://api.nbp.pl/api/exchangerates/rates/a/";
 
     @GetMapping("/convert")
     public double convertCurrency(
